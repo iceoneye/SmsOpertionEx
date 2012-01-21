@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+<RelativeLayout
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+
+    <EditText
+        android:id="@+id/editText1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_marginTop="98dp"
+        android:layout_toLeftOf="@+id/button2" 
+		android:visibility="gone">
+        <requestFocus />
+    </EditText>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:background="@android:drawable/btn_dialog" 
+        android:id="@+id/btnClose"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/button1"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="17dp"
+        android:layout_marginLeft="5dp"
+        android:text="tvpn" 
+        android:id="@+id/tvPn"/>
+	<ScrollView
+		android:id="@+id/svContext"
+		android:layout_width="wrap_content"
+        android:layout_height="100dp"
+        android:layout_below="@+id/tvPn"
+        android:layout_marginTop="5dp"
+	    android:layout_marginLeft="5dp"
+        android:layout_alignParentLeft="true"
+	    android:layout_alignParentRight="true"	  
+        >
+	    <TextView
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"
+	        android:id="@+id/tvContext"/>
+	</ScrollView>
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignTop="@+id/editText1"
+        android:visibility="gone"
+        android:text="@string/reply" />
+	
+	<Button
+        android:id="@+id/btnAutoReply"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/svContext"
+        android:layout_centerHorizontal="true"
+        android:visibility="gone"
+        android:text="@string/random_reply" />
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/svContext"
+        android:layout_centerHorizontal="true"
+        android:text="@string/save_sample" />
+
+    <Button
+        android:id="@+id/btnWait"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/button3"
+        android:layout_alignBottom="@+id/button3"
+        android:layout_alignParentRight="true"
+        android:text="@string/save_msg_to_reply_list" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/button3"
+        android:layout_alignBottom="@+id/button3"
+        android:layout_alignParentLeft="true"
+        android:text="@string/sample_reply" 
+        android:id="@+id/btnReply"/>
+   
+</RelativeLayout>
+
+
+</LinearLayout>
