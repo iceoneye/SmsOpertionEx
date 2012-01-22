@@ -2,7 +2,10 @@ package cn.err0r.android.sms.view;
 
 import java.util.ArrayList;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -30,6 +33,7 @@ public class SMSWaitList extends BaseActivty {
         list.setAdapter(adapter);
         super.onResume();
 	}
+	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		
@@ -92,6 +96,34 @@ public class SMSWaitList extends BaseActivty {
 				onResume();
 			}
 		});
+        
+        Button btnViewSMS =  (Button)findViewById(R.id.btnViewSMS);
+        btnViewSMS.setOnClickListener(new OnClickListener() {
+			
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				if(smsinfodao == null)
+					smsinfodao =  new SMSINFODao(SMSWaitList.this);
+				for(int i=0;i<list.getCount();i++){    
+	                if(ListAdapter.isSelected.get(i)){ 
+	                	ViewHolder vHollder = (ViewHolder) list.getChildAt(i).getTag(); 
+	                	Cursor info = smsinfodao.select(" and pn ='"+ (String) vHollder.pn.getText() +"'");
+	                	info.moveToFirst();	                	
+	                	new AlertDialog.Builder(SMSWaitList.this)
+	    		        .setTitle(info.getString(1))
+	    		        .setMessage(info.getString(2))
+	    		        .setIcon(android.R.drawable.ic_dialog_email)
+	    		        .setPositiveButton("È·¶¨", new DialogInterface.OnClickListener() {
+					        public void onClick(DialogInterface dialog, int whichButton) {
+					        	dialog.cancel();
+					        }
+					        })
+	    		        .show();    
+	                    break;
+	                }    
+	            }
+				smsinfodao.close();
+			}
+		});
 	}
-
 }

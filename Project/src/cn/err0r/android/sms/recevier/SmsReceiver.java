@@ -26,10 +26,6 @@ public class SmsReceiver extends BroadcastReceiver{
 	SMSINFOModel smsinfo;
 	ReceiverType type;
 	
-	//联系人信息
-    private static final String[] PHONES_PROJECTION = new String[] {
-    	Phone.DISPLAY_NAME, Phone.NUMBER, Photo.PHOTO_ID,Phone.NUMBER};
-	
 	public SmsReceiver(){
 //		Log.i("TAG","SmsRecevier is Create!");
 	}
@@ -112,7 +108,6 @@ public class SmsReceiver extends BroadcastReceiver{
 //	        //那么系统就不会收到短信通知了
 //	        abortBroadcast();
 		}
-		
 	}
 	
     /**
@@ -149,6 +144,11 @@ public class SmsReceiver extends BroadcastReceiver{
 		}
 		return null;
     }
+
+	
+	//联系人信息
+    private static final String[] PHONES_PROJECTION = new String[] {
+    	Phone.DISPLAY_NAME, Phone.NUMBER, Photo.PHOTO_ID,Phone.NUMBER};
     
     /**
      * 获得短信联系人
@@ -179,7 +179,6 @@ public class SmsReceiver extends BroadcastReceiver{
         Object pdus[] = (Object[]) bundle.get("pdus");
         return SmsMessage.createFromPdu((byte[]) pdus[0]).getDisplayOriginatingAddress();
     }
-    
 
 	public static boolean CheckSms(String sms){
 		return true;

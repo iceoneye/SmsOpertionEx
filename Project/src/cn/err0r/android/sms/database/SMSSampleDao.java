@@ -39,6 +39,11 @@ public class SMSSampleDao  extends DBHelper {
 		
 	}
 	
+	public long updatafastreplyState(Integer id, boolean state,SMSSampleModel smssample){
+		delete(id);
+		return insert(smssample);
+	}
+	
 	public long updatafastreplyState(Integer id){
 		SQLiteDatabase db = this.getWritableDatabase();
 		Cursor cursor=db.rawQuery("select State from smssample where Sid="+id, null);
@@ -52,7 +57,6 @@ public class SMSSampleDao  extends DBHelper {
 		db.close();
 		cursor.close();
 		return sum;
-		
 	}
 	
 	public long delete(Integer id){

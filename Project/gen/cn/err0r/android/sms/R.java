@@ -25,31 +25,35 @@ public final class R {
         public static final int add_btn1=0x7f060002;
         public static final int add_cb1=0x7f060000;
         public static final int add_et1=0x7f060001;
-        public static final int btnAutoReply=0x7f060022;
-        public static final int btnClose=0x7f06001d;
-        public static final int btnReply=0x7f060025;
-        public static final int btnReplySMS=0x7f060028;
+        public static final int btnAutoReply=0x7f060026;
+        public static final int btnChange=0x7f06001e;
+        public static final int btnClose=0x7f06001b;
+        public static final int btnReply=0x7f060029;
+        public static final int btnReplySMS=0x7f06002c;
+        public static final int btnSend=0x7f060025;
         public static final int btnStartMonitor=0x7f060007;
         public static final int btnStartReply=0x7f06000c;
         public static final int btnStartTrust=0x7f060009;
-        public static final int btnWait=0x7f060024;
-        public static final int button1=0x7f06001e;
-        public static final int button2=0x7f06001c;
-        public static final int button3=0x7f060023;
-        public static final int cb=0x7f06002d;
+        public static final int btnViewSMS=0x7f06002e;
+        public static final int btnWait=0x7f060028;
+        public static final int button1=0x7f06001d;
+        public static final int button2=0x7f060024;
+        public static final int button3=0x7f060027;
+        public static final int cb=0x7f060031;
         public static final int deallist=0x7f060010;
         public static final int deallist_btn1=0x7f060005;
-        public static final int deallist_btn2=0x7f060029;
-        public static final int deallist_btn3=0x7f06002a;
+        public static final int deallist_btn2=0x7f06002d;
         public static final int deallist_lv=0x7f060004;
-        public static final int editText1=0x7f06001b;
-        public static final int img=0x7f06002b;
+        public static final int editText1=0x7f060023;
+        public static final int etPn=0x7f06001f;
+        public static final int img=0x7f06002f;
         public static final int layoutMonitor=0x7f060006;
         public static final int layoutReply=0x7f06000b;
+        public static final int layoutSend=0x7f060022;
         public static final int layoutTrust=0x7f060008;
         public static final int linearLayout1=0x7f06000e;
-        public static final int linearLayout2=0x7f060027;
-        public static final int lv=0x7f060026;
+        public static final int linearLayout2=0x7f06002b;
+        public static final int lv=0x7f06002a;
         public static final int msgsend_btn=0x7f060014;
         public static final int msgsend_et=0x7f060015;
         public static final int msgsend_lv=0x7f060017;
@@ -64,9 +68,9 @@ public final class R {
         public static final int textView1=0x7f060003;
         public static final int textView2=0x7f06000a;
         public static final int textView3=0x7f06000d;
-        public static final int title=0x7f06002c;
+        public static final int title=0x7f060030;
         public static final int tvContext=0x7f060021;
-        public static final int tvPn=0x7f06001f;
+        public static final int tvPn=0x7f06001c;
         public static final int waitView=0x7f06000f;
     }
     public static final class layout {
@@ -107,27 +111,29 @@ public final class R {
         public static final int endmoritor=0x7f04000f;
         public static final int endreply=0x7f040011;
         public static final int endtrust=0x7f040010;
+        public static final int enter_nickname=0x7f04002f;
         public static final int entersms=0x7f040007;
-        public static final int from=0x7f040028;
+        public static final int from=0x7f040029;
         public static final int main_service1=0x7f040013;
         public static final int main_service2=0x7f040014;
         public static final int main_service3=0x7f040015;
         public static final int ok=0x7f040002;
         /**  smstoast.java+smstoast.xml 
          */
-        public static final int random_reply=0x7f04002a;
+        public static final int random_reply=0x7f04002b;
         /**  smswaitlist.xml 
          */
-        public static final int remove_from_list=0x7f040027;
+        public static final int remove_from_list=0x7f040028;
         public static final int reply=0x7f040005;
         public static final int sample=0x7f040008;
         public static final int sample_manage=0x7f040017;
-        public static final int sample_reply=0x7f04002d;
+        public static final int sample_reply=0x7f04002e;
         public static final int save=0x7f040001;
-        public static final int save_msg_to_reply_list=0x7f04002c;
-        public static final int save_sample=0x7f04002b;
+        public static final int save_msg_to_reply_list=0x7f04002d;
+        public static final int save_sample=0x7f04002c;
         public static final int send=0x7f040006;
         public static final int setting=0x7f04000a;
+        public static final int smssend_succeed=0x7f040027;
         public static final int smssend_tonfriend=0x7f040026;
         public static final int smssend_willsend=0x7f040025;
         public static final int smstoast_randomsendfailed=0x7f040012;
@@ -141,7 +147,7 @@ public final class R {
         public static final int stop_failed=0x7f04001c;
         public static final int stop_succeed=0x7f04001b;
         public static final int unbind_service=0x7f040019;
-        public static final int view_msg=0x7f040029;
+        public static final int view_msg=0x7f04002a;
         public static final int waiting_list=0x7f040016;
     }
 }

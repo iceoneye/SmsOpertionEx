@@ -51,7 +51,7 @@
     <string name="_reply">回复: </string>
     <string name="smssend_willsend">将发送给</string>
     <string name="smssend_tonfriend">位好友</string>
-    
+    <string name="smssend_succeed">发送成功</string>
     <!-- smswaitlist.xml -->
     <string name="remove_from_list">移出列表</string>
     <string name="from">来自：</string>
@@ -84,4 +84,5 @@
     <string name="save_sample">存为模板</string>
     <string name="save_msg_to_reply_list">放入待回</string>
     <string name="sample_reply">模板回复</string>
+    <string name="enter_nickname">请输入别名</string>
 </resources>

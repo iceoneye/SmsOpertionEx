@@ -44,9 +44,7 @@ public class SMSAdd extends Activity {
 			cb.setChecked(i.getBooleanExtra("State", false));
 			sid=i.getIntExtra("Sid", -1);
 			Log.i("intent", et.getText().toString()+" "+cb.isChecked()+" "+sid);
-			
 		}
-		
 	}
 	
 	@Override

@@ -30,6 +30,7 @@ import android.widget.CheckBox;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class SmsSend extends Activity{
 	CheckBox samplelist_cBox;
@@ -158,6 +159,7 @@ public class SmsSend extends Activity{
                 PendingIntent mPI = PendingIntent.getBroadcast(context, 0, new Intent(), 0);
                 SmsManager.getDefault().sendTextMessage(addre, null, mess, mPI,null);
                 sendSMS(addre,mess);
+                Toast.makeText(SmsSend.this, getResources().getString(R.string.smssend_succeed), Toast.LENGTH_SHORT).show();
                 return true;
             }
             catch (Exception e)

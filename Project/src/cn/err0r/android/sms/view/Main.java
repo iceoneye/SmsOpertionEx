@@ -1,6 +1,7 @@
 package cn.err0r.android.sms.view;
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -23,7 +24,6 @@ public class Main extends BaseActivty {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
 
-		
         btnStartMonitor=(Button)findViewById(R.id.btnStartMonitor);
         btnStartMonitor.setOnClickListener(new OnClickListener() {
  		
@@ -65,11 +65,17 @@ public class Main extends BaseActivty {
 		 			btnStartReply.setText(R.string.startreply);
 				}else{
 					stopService(new Intent("cn.err0r.android.sms.MSG_SERVICE"));
-	 				btnStartMonitor.setText(R.string.startmoritor);
+	 				btnStartMonitor.setText(R.string.endmoritor);
 	 				btnStartTrust.setText(R.string.starttrust);
+	 				Intent service = new Intent("cn.err0r.android.sms.MSG_SERVICE");
+		 			Bundle mBundle = new Bundle();  
+			        mBundle.putSerializable("TYPE",ReceiverType.Standard);
+			        service.putExtras(mBundle);
+		 			startService(service);
 				}
 			}
 		});
+        
         btnStartReply = (Button)findViewById(R.id.btnStartReply);
         btnStartReply.setOnClickListener(new OnClickListener() {
 			
@@ -88,8 +94,13 @@ public class Main extends BaseActivty {
 		 			btnStartReply.setText(R.string.endreply);
 				}else{
 					stopService(new Intent("cn.err0r.android.sms.MSG_SERVICE"));
-	 				btnStartMonitor.setText(R.string.startmoritor);
+	 				btnStartMonitor.setText(R.string.endmoritor);
 	 				btnStartReply.setText(R.string.startreply);
+	 				Intent service = new Intent("cn.err0r.android.sms.MSG_SERVICE");
+		 			Bundle mBundle = new Bundle();  
+			        mBundle.putSerializable("TYPE",ReceiverType.Standard);
+			        service.putExtras(mBundle);
+		 			startService(service);
 				}
 			}
 		});
@@ -111,23 +122,8 @@ public class Main extends BaseActivty {
 				startActivity(new Intent(Main.this,SMSWaitList.class));
 			}
 		});
-           
     }
-	@Override
-	public void onSaveInstanceState(Bundle outState){
-		outState.putString("m", btnStartMonitor.getText().toString());
-		outState.putString("t", btnStartTrust.getText().toString());
-		outState.putString("r", btnStartReply.getText().toString());
-		
-		super.onSaveInstanceState(outState);
-	}
-	@Override
-	public void onRestoreInstanceState(Bundle savedInstanceState){
-		btnStartMonitor.setText(savedInstanceState.getString("m"));
-		btnStartTrust.setText(savedInstanceState.getString("t"));
-		btnStartReply.setText(savedInstanceState.getString("r"));
-		super.onRestoreInstanceState(savedInstanceState);
-	}
+
 	@Override
 	public void onPause(){
 		super.onPause();
@@ -136,6 +132,7 @@ public class Main extends BaseActivty {
 		ex.setT(btnStartTrust.getText().toString());
 		ex.setR(btnStartReply.getText().toString());
 	}
+	
 	@Override
 	public void onResume(){
 		super.onResume();
@@ -147,15 +144,16 @@ public class Main extends BaseActivty {
 			btnStartReply.setText(ex.getR());
 		}
 	}
+	
 	SMSINFODao smsinfodao;
 	String getWaitCount(){
 		
-		if(smsinfodao == null){
+		if(smsinfodao == null)
 			smsinfodao = new SMSINFODao(Main.this);
-			smsinfodao.getWritableDatabase();
-		}
-			
-		int count = smsinfodao.select().getCount();
+		Cursor getcount = smsinfodao.select();
+		int count = getcount.getCount();
+		getcount.close();
+		smsinfodao.close();
 		if(count != 0)
 			return "("+count+")";
 		return "";

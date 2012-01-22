@@ -34,7 +34,8 @@
         </activity>
         <activity android:name=".view.SMSWaitList">
         </activity>
-        <activity android:name=".view.SMSAdd" android:windowSoftInputMode="adjustResize">
+        <activity android:name=".view.SMSAdd" 
+        	android:windowSoftInputMode="stateVisible">
         </activity>
         
         <service android:name=".recevier.SmsService">

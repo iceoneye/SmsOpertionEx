@@ -15,6 +15,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 import cn.err0r.android.sms.R;
@@ -32,12 +33,18 @@ public class SMSToast extends BaseActivty {
 	Button btnClose;
 	Button btnSave;
 	Button btnAutoReply;
+	Button btnSend;
+	Button btnChange;
+	EditText etContext;
+	EditText etChange;
 	
 	SMSSampleModel smssample;
     SMSSampleDao smssampledao;
     
     SMSINFODao smsinfodao;
+    
 	ArrayList<String> pns = new ArrayList<String>();
+	
 	void getView(){
 		lvlpn = (TextView)findViewById(R.id.tvPn);
 		lvlcontext = (TextView)findViewById(R.id.tvContext);
@@ -46,7 +53,12 @@ public class SMSToast extends BaseActivty {
 		btnClose = (Button)findViewById(R.id.btnClose);
 		btnSave = (Button)findViewById(R.id.button3);
 		btnAutoReply = (Button)findViewById(R.id.btnAutoReply);
+		btnSend = (Button)findViewById(R.id.btnSend);
+		btnChange = (Button)findViewById(R.id.btnChange);
+		etChange = (EditText)findViewById(R.id.etPn);
+		etContext = (EditText)findViewById(R.id.editText1);
 	}
+	
 	void ChangeView(int type){
 		switch (type) {
 		case 1:
@@ -58,15 +70,15 @@ public class SMSToast extends BaseActivty {
 		case 2:
 			btnAutoReply.setVisibility(View.VISIBLE);
 			btnReply.setVisibility(View.GONE);
-			btnWait.setVisibility(View.GONE);
+			btnWait.setVisibility(View.VISIBLE);
 			btnSave.setVisibility(View.GONE);
 			break;
 
 		default:
 			break;
 		}
-		
 	}
+	
 	@Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -80,6 +92,7 @@ public class SMSToast extends BaseActivty {
         String showpn =  getResources().getString(R.string.from)+smsinfo.get_who() + (smsinfo.get_who().equals("")? smsinfo.get_pn() : "-" + smsinfo.get_pn());
         lvlpn.setText(showpn);
         lvlcontext.setText(smsinfo.get_body());
+        
         btnReply.setOnClickListener(new OnClickListener() {
 			
 			public void onClick(View v) {
@@ -90,14 +103,40 @@ public class SMSToast extends BaseActivty {
 		        intent.putExtras(mBundle); 
 				startActivity(intent);
 				finish();
-				
 			}
 		});
+        
         btnWait.setOnClickListener(waitListener);
         btnClose.setOnClickListener(closeListener);
         btnSave.setOnClickListener(saveSamle);
         btnAutoReply.setOnClickListener(autoSendSMS);
+        btnSend.setOnClickListener(sendSMS);
+        btnChange.setOnClickListener(changeUserName);
 	}
+	
+	OnClickListener changeUserName = new OnClickListener() {
+		
+		public void onClick(View v) {
+			// TODO Auto-generated method stub
+			if(etChange.getVisibility() == View.GONE){
+				etChange.setVisibility(View.VISIBLE);
+				lvlpn.setVisibility(View.GONE);
+			}else{
+				etChange.setVisibility(View.GONE);
+				lvlpn.setVisibility(View.VISIBLE);
+			}
+		}
+	};
+	
+	OnClickListener sendSMS = new OnClickListener() {
+		
+		public void onClick(View v) {
+			// TODO Auto-generated method stub
+			SendSms(SMSToast.this,smsinfo.get_pn(),etContext.getText().toString());
+			finish();
+		}
+	};
+	
 	OnClickListener autoSendSMS = new OnClickListener() {
 		
 		public void onClick(View v) {
@@ -117,6 +156,7 @@ public class SMSToast extends BaseActivty {
 			}
 		}
 	};
+	
 	OnClickListener saveSamle = new OnClickListener() {
 		
 		public void onClick(View v) {
@@ -134,6 +174,7 @@ public class SMSToast extends BaseActivty {
 			finish();
 		}
 	};
+	
     OnClickListener closeListener = new OnClickListener() {
 		
 		public void onClick(View v) {
@@ -154,6 +195,8 @@ public class SMSToast extends BaseActivty {
 			// TODO Auto-generated method stub
 			SMSINFODao smsdao = new SMSINFODao(SMSToast.this);
 			if(smsdao != null){
+				if(etChange.getVisibility()==View.VISIBLE)
+					smsinfo.set_who(etChange.getText().toString());
 				smsdao.insert(smsinfo);					
 			}
 			smsdao.close();
@@ -170,6 +213,7 @@ public class SMSToast extends BaseActivty {
 		ContentValues values = new ContentValues(); 
 		values.put("address", pn); 
 		values.put("body", body); 
+		//把短信插入发件箱
 		getContentResolver().insert(Uri.parse("content://sms/sent"), values); 
 		smsinfodao = new SMSINFODao(SMSToast.this);
 		smsinfodao.deleteByPn(pn);
@@ -184,6 +228,7 @@ public class SMSToast extends BaseActivty {
 	            PendingIntent mPI = PendingIntent.getBroadcast(context, 0, new Intent(), 0);
 	            SmsManager.getDefault().sendTextMessage(addre, null, mess, mPI,null);
 	            sendSMS(addre,mess);
+	            Toast.makeText(SMSToast.this, getResources().getString(R.string.smssend_succeed), Toast.LENGTH_SHORT).show();
 	            return true;
 	        }
 	        catch (Exception e)

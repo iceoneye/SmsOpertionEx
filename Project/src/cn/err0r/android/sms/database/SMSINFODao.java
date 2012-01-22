@@ -38,4 +38,10 @@ public class SMSINFODao extends DBHelper {
 		return db.rawQuery("select PN,Who,Body from smsinfo order by sid desc", null);
 	}
 	
+	public Cursor select(String strSql){
+		SQLiteDatabase db = this.getReadableDatabase();
+		return db.rawQuery("select PN,Who,Body from smsinfo where 1=1 "+strSql+" order by sid desc", null);
+	}
+	
+	
 }

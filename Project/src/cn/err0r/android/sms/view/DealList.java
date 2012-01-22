@@ -20,11 +20,13 @@ public class DealList extends Activity {
 	Button deallist_add,samplesmslist_delete;
     SMSSampleDao smssampledao;
     SampleListAdapter adapter;
+    
     void getView(){
     	lv = (ListView)findViewById(R.id.deallist_lv);
     	deallist_add=(Button)findViewById(R.id.deallist_btn1);
     	samplesmslist_delete=(Button)findViewById(R.id.samplesms_btn1);
     }
+    
 	@Override
 	public void onResume(){
 		Log.i("deallist","onResume");
