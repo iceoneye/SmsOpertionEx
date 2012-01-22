@@ -1,3 +1,7 @@
+节日短信助手是一款Android平台上的短信回复工具。
+开启节日短信服务后，收到短信将会在手机屏幕弹出短信内容，同时可以选择对应操作。
+内置多个春节祝福模板，也可以自己添加、删除祝福短信。
+
 SmsOpertionEx is a tool for sending SMS to friends.
 You can make your sms show on your screen as soon as you receive messages. It contains lots sample messages which you can use to send to your friend on Spring Festval.
 You can also edit these sample messages and save your own ones.
